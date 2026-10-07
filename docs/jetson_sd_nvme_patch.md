@@ -5,8 +5,16 @@
 기존 Jetson에 **시동 시 자동 업데이트 기능을 추가**하려면 아래 파일을 받으세요.
 기존 R2 또는 SD/NVMe v2 설치에 적용하는 최초 1회용 패치입니다.
 
-- **[설치파일 받기 — 약 12.4 MB](https://upload.shind0.synology.me/downloads/jetson/v0.4.1-boot-update-patch-preview/carrot-jetson-windows.zip)**
+- **[설치파일 받기 — v0.4.2, 약 12.4 MB](https://upload.shind0.synology.me/downloads/jetson/v0.4.2-boot-update-patch-preview/carrot-jetson-windows.zip)**
 - **[자동 업데이트 패치 적용 방법](https://github.com/ajouatom/openpilot/blob/carrot-wip/docs/jetson_offline_boot_patch_20261007.md)**
+
+**v0.4.2 — 3단계 `Access is denied` 대응 수정:** 파일 복사를 별도 프로세스에서
+마치고 임시 드라이브 문자를 해제한 뒤, 볼륨 잠금을 최대 30초 재시도합니다.
+이전 버전에서 실패했다면 대상 USB를 열어 둔 탐색기 창을 닫고, 새 ZIP을
+**새 폴더에 모두 풀어 처음부터 다시 실행**하세요. 포맷·이미지 재설치는 필요 없습니다.
+계속 실패하면 `logs`의 새 `-patch.txt`에 표시되는 `operation`, `partition`,
+`Win32` 오류 번호를 함께 알려주세요. 잠금을 확보하지 못하면 기록하지 않습니다.
+보고된 PC·USB 장치에서의 해결 여부는 아직 확인 전입니다.
 
 Jetson을 정상 종료하고 **전원을 완전히 분리한 뒤**, 부팅 저장장치를 USB 리더·케이스로
 Windows PC에 연결하세요. Windows의 포맷 안내는 **취소**합니다.
@@ -24,6 +32,12 @@ This one-time Windows patch adds startup automatic updates to existing R2 or
 SD/NVMe v2 installations. Use the 12.4 MB download and instructions above;
 the ZIP includes a bilingual guide. Physical media patching and the patched
 Jetson boot remain unverified.
+
+v0.4.2 isolates the payload-copy process and retries volume locks after stage-3
+access errors. Close Explorer windows using the target USB, extract to a new
+folder and rerun the patch from the beginning; no format or image rewrite is needed.
+Persistent failures now identify the operation, partition and native Windows error.
+Resolution on the reporting PC and USB device is still awaiting confirmation.
 
 ## 기존 SD/NVMe 공용 패치 — 저장장치 호환성
 
