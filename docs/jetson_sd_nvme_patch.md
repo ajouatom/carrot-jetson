@@ -1,5 +1,35 @@
 # Jetson microSD / NVMe 공용 패치
 
+## 2026-10-07: 자동 업데이트 기능 추가 패치
+
+기존 Jetson에 **시동 시 자동 업데이트 기능을 추가**하려면 아래 파일을 받으세요.
+기존 R2 또는 SD/NVMe v2 설치에 적용하는 최초 1회용 패치입니다.
+
+- **[설치파일 받기 — 약 12.4 MB](https://upload.shind0.synology.me/downloads/jetson/v0.4.1-boot-update-patch-preview/carrot-jetson-windows.zip)**
+- **[자동 업데이트 패치 적용 방법](https://github.com/ajouatom/openpilot/blob/carrot-wip/docs/jetson_offline_boot_patch_20261007.md)**
+
+Jetson을 정상 종료하고 **전원을 완전히 분리한 뒤**, 부팅 저장장치를 USB 리더·케이스로
+Windows PC에 연결하세요. Windows의 포맷 안내는 **취소**합니다.
+ZIP을 PC에 모두 풀고 **`Jetson_자동업데이트패치.cmd`**를 실행하세요.
+검사·패치·기록 확인에 약 **5~20분**이 걸리며, 완료 전에는 분리하거나 창을 닫지 마세요.
+완료 후 안전하게 제거하고 전원이 분리된 Jetson에 다시 장착합니다.
+**C4도 최신 버전으로 업데이트**하고 USB·인터넷을 연결한 뒤 정차 상태에서 첫 부팅을
+확인하세요. Carrot Web의 최초 업데이트 대기 버튼이나 SSH 접속은 필요 없습니다.
+
+**시험판:** PC 검사는 통과했지만 실제 저장장치 기록과 패치 후 Jetson 부팅은 아직
+검증 전입니다. 중요한 내용은 먼저 백업하세요. 중단되면 같은 패치를 다시 실행하여
+완료를 확인한 뒤 부팅하세요. 자세한 한글·영문 안내는 ZIP에도 포함되어 있습니다.
+
+This one-time Windows patch adds startup automatic updates to existing R2 or
+SD/NVMe v2 installations. Use the 12.4 MB download and instructions above;
+the ZIP includes a bilingual guide. Physical media patching and the patched
+Jetson boot remain unverified.
+
+## 기존 SD/NVMe 공용 패치 — 저장장치 호환성
+
+아래의 약 32 MB 패치는 SD/NVMe 저장장치 호환성을 위한 별도 패치입니다.
+위 자동 업데이트 패치와 실행 파일·적용 목적이 다릅니다.
+
 **v2 수정 안내:** v1은 초기 부팅 이미지에 없는 `wc`·`readlink` 명령을 사용하여
 부팅을 막는 결함이 있었습니다. v2는 해당 명령 없이 동작합니다. 이미 v1을 적용했다면
 새 패치를 기존 CarrotJetson 폴더에 덮어 풀고 **03만 다시 실행**하세요.
